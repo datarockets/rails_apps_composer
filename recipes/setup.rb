@@ -114,10 +114,8 @@ development:
   form_builder: #{prefs[:form_builder]}
   pages: #{prefs[:pages]}
   layouts: #{prefs[:layouts]}
-  locale: #{prefs[:locale]}
   analytics: #{prefs[:analytics]}
   deployment: #{prefs[:deployment]}
-  ban_spiders: #{prefs[:ban_spiders]}
   github: #{prefs[:github]}
   local_env_file: #{prefs[:local_env_file]}
   better_errors: #{prefs[:better_errors]}

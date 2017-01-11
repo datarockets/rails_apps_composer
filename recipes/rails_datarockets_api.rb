@@ -2,41 +2,42 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rails_stripe_membership_saas.rb
 
 if prefer :apps4, 'rails-datarockets-api'
-  prefs[:frontend] = 'bootstrap3'
+  prefs[:github] = true
+  prefs[:frontend] = 'none'
+  prefs[:analytics] = 'none'
+  prefs[:email] = 'smtp'
+  prefs[:templates] = 'erb'
+  prefs[:continuous_testing] = 'none'
+  prefs[:tests] = 'rspec'
+  prefs[:dashboard] = 'none'
+  prefs[:deployment] = 'capistrano3'
+  prefs[:announcements] = 'none'
   prefs[:authentication] = 'devise'
-  prefs[:authorization] = 'roles'
+  prefs[:authorization] = 'none'
   prefs[:better_errors] = true
-  prefs[:devise_modules] = false
-  prefs[:form_builder] = false
+  prefs[:form_builder] = 'none'
   prefs[:git] = true
-  prefs[:local_env_file] = false
-  prefs[:pry] = false
+  prefs[:pry] = true
   prefs[:disable_turbolinks] = true
-  prefs[:secrets] = ['stripe_publishable_key',
-    'stripe_api_key',
-    'mailchimp_list_id',
-    'mailchimp_api_key']
-  prefs[:pages] = 'about+users'
-  prefs[:locale] = 'none'
-  prefs[:rubocop] = false
+  prefs[:rubocop] = true
   prefs[:rvmrc] = true
-
+end
   # gems
-  add_gem 'gibbon'
-  add_gem 'payola-payments'
-  add_gem 'sucker_punch'
+  # add_gem 'gibbon'
+  # add_gem 'payola-payments'
+  # add_gem 'sucker_punch'
 
-  stage_three do
-    say_wizard "recipe stage three"
+  # stage_three do
+  #   say_wizard "recipe stage three"
     # repo = 'https://raw.github.com/RailsApps/rails-stripe-membership-saas/master/'
 
     # >-------------------------------[ Migrations ]---------------------------------<
 
-    generate 'payola:install'
-    generate 'model Plan name stripe_id interval amount:integer --no-test-framework'
-    generate 'migration AddPlanRefToUsers plan:references'
-    generate 'migration RemoveNameFromUsers name'
-    run 'bundle exec rake db:migrate'
+    # generate 'payola:install'
+    # generate 'model Plan name stripe_id interval amount:integer --no-test-framework'
+    # generate 'migration AddPlanRefToUsers plan:references'
+    # generate 'migration RemoveNameFromUsers name'
+    # run 'bundle exec rake db:migrate'
 
     # >-------------------------------[ Config ]---------------------------------<
 
@@ -98,13 +99,13 @@ if prefer :apps4, 'rails-datarockets-api'
 
     ### tests not implemented
 
-  end
-end
+  # end
+
 
 __END__
 
-name: rails_stripe_membership_saas
-description: "rails-stripe-membership-saas starter application"
+name: rails_datarockets_api
+description: "rails-datarockets-api starter application"
 author: RailsApps
 
 requires: [core]
