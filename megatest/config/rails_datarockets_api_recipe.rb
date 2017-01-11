@@ -18,7 +18,7 @@ prefs[:disable_turbolinks] = true
 prefs[:rubocop] = true
 prefs[:rvmrc] = true
 __END__
-name:                            rails_omniauth_testing_recipe
-description:                     rails-omniauth testing recipe
+name:                            rails_datarockets_api_recipe
+description:                     rails-datarockets api recipe
 author: RailsApps
 category: testing
