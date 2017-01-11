@@ -11,10 +11,10 @@ description: "Select all core recipes."
 author: RailsApps
 
 requires: [git, railsapps, rails_datarockets_api,
-  setup, locale, readme, gems,
+  setup, readme, gems,
   tests,
   email,
   devise, omniauth, roles,
-  frontend, pages,
+  frontend,
   init, analytics, deployment, extras]
 category: collections
