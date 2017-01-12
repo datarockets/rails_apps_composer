@@ -10,7 +10,7 @@ name: core
 description: "Select all core recipes."
 author: RailsApps
 
-requires: [git, railsapps, rails_datarockets_api,
+requires: [git, railsapps,
   setup, readme, gems,
   tests,
   email,
