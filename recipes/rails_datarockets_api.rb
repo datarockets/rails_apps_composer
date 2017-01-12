@@ -112,7 +112,7 @@ name: rails_datarockets_api
 description: "rails-datarockets-api starter application"
 author: RailsApps
 
-requires: [git,
+requires: [git, railsapps,
   setup, readme, gems,
   tests,
   email,
