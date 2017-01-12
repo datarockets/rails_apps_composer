@@ -6,6 +6,7 @@ say_wizard "COCOCOCOCO_1"
 
 say_wizard(prefer :apps4, 'rails-datarockets-api')
 if prefer :apps4, 'rails-datarockets-api'
+  prefs[:apps4] = 'rails-datarockets-api'
   prefs[:github] = true
   prefs[:frontend] = 'none'
   prefs[:analytics] = 'none'
