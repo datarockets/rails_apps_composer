@@ -2,7 +2,8 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rails_stripe_membership_saas.rb
 
 
-say_wizard "COCOCOCOCO"
+say_wizard "COCOCOCOCO_1"
+
 say_wizard(prefer :apps4, 'rails-datarockets-api')
 if prefer :apps4, 'rails-datarockets-api'
   prefs[:github] = true
