@@ -4,29 +4,29 @@
 
 say_wizard "COCOCOCOCO_1"
 
-say_wizard(prefer :apps4, 'rails-datarockets-api')
-if prefer :apps4, 'rails-datarockets-api'
-  prefs[:apps4] = 'rails-datarockets-api'
-  prefs[:github] = true
-  prefs[:frontend] = 'none'
-  prefs[:analytics] = 'none'
-  prefs[:email] = 'smtp'
-  prefs[:templates] = 'erb'
-  prefs[:continuous_testing] = 'none'
-  prefs[:tests] = 'rspec'
-  prefs[:dashboard] = 'none'
-  prefs[:deployment] = 'capistrano3'
-  prefs[:announcements] = 'none'
-  prefs[:authentication] = 'devise'
-  prefs[:authorization] = 'none'
-  prefs[:better_errors] = true
-  prefs[:form_builder] = 'none'
-  prefs[:git] = true
-  prefs[:pry] = true
-  prefs[:disable_turbolinks] = true
-  prefs[:rubocop] = true
-  prefs[:rvmrc] = true
-end
+# say_wizard(prefer :apps4, 'rails-datarockets-api')
+# if prefer :apps4, 'rails-datarockets-api'
+prefs[:apps4] = 'rails-datarockets-api'
+prefs[:github] = true
+prefs[:frontend] = 'none'
+prefs[:analytics] = 'none'
+prefs[:email] = 'smtp'
+prefs[:templates] = 'erb'
+prefs[:continuous_testing] = 'none'
+prefs[:tests] = 'rspec'
+prefs[:dashboard] = 'none'
+prefs[:deployment] = 'capistrano3'
+prefs[:announcements] = 'none'
+prefs[:authentication] = 'devise'
+prefs[:authorization] = 'none'
+prefs[:better_errors] = true
+prefs[:form_builder] = 'none'
+prefs[:git] = true
+prefs[:pry] = true
+prefs[:disable_turbolinks] = true
+prefs[:rubocop] = true
+prefs[:rvmrc] = true
+# end
   # gems
   # add_gem 'gibbon'
   # add_gem 'payola-payments'
@@ -113,7 +113,7 @@ name: rails_datarockets_api
 description: "rails-datarockets-api starter application"
 author: RailsApps
 
-requires: [git, railsapps,
+requires: [git,
   setup, readme, gems,
   tests,
   email,
