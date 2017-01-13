@@ -48,7 +48,6 @@ if config['rubocop'] || prefs[:rubocop]
   say_wizard "recipe adding rubocop gem and basic .rubocop.yml"
   add_gem 'rubocop', :group => [:development, :test]
   copy_from 'https://raw.github.com/datarockets/rails_apps_composer/master/files/rubocop.txt', '.rubocop.yml'
-  copy_from_repo '.rubocop.yml'
 end
 
 ## Disable Turbolinks
