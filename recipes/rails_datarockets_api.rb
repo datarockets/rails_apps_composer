@@ -1,9 +1,6 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rails_stripe_membership_saas.rb
 
-
-say_wizard "COCOCOCOCO_1"
-
 # say_wizard(prefer :apps4, 'rails-datarockets-api')
 # if prefer :apps4, 'rails-datarockets-api'
 prefs[:apps4] = 'rails-datarockets-api'
@@ -58,9 +55,6 @@ prefs[:rvmrc] = true
 
     # copy_from_repo 'app/controllers/application_controller.rb', :repo => repo
     # copy_from_repo 'app/controllers/content_controller.rb', :repo => repo
-    # copy_from_repo 'app/controllers/visitors_controller.rb', :repo => repo
-    # copy_from_repo 'app/controllers/products_controller.rb', :repo => repo
-    # copy_from_repo 'app/controllers/registrations_controller.rb', :repo => repo
 
     # >-------------------------------[ Jobs ]---------------------------------<
 
@@ -84,17 +78,6 @@ prefs[:rvmrc] = true
 
     # copy_from_repo 'app/views/content/gold.html.erb', :repo => repo
     # copy_from_repo 'app/views/content/platinum.html.erb', :repo => repo
-    # copy_from_repo 'app/views/content/silver.html.erb', :repo => repo
-    # copy_from_repo 'app/views/devise/registrations/edit.html.erb', :repo => repo
-    # copy_from_repo 'app/views/devise/registrations/new.html.erb', :repo => repo
-    # copy_from_repo 'app/views/layouts/_navigation_links.html.erb', :repo => repo
-    # copy_from_repo 'app/views/layouts/application.html.erb', :repo => repo
-    # copy_from_repo 'app/views/layouts/mailer.html.erb', :repo => repo
-    # copy_from_repo 'app/views/layouts/mailer.text.erb', :repo => repo
-    # copy_from_repo 'app/views/user_mailer/expire_email.html.erb', :repo => repo
-    # copy_from_repo 'app/views/user_mailer/expire_email.text.erb', :repo => repo
-    # copy_from_repo 'app/views/visitors/index.html.erb', :repo => repo
-    # copy_from_repo 'app/views/products/product.pdf', :repo => repo
 
     # >-------------------------------[ Routes ]--------------------------------<
 
