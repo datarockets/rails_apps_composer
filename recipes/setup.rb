@@ -2,9 +2,6 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/setup.rb
 
 ## Ruby on Rails
-say_wizard "COCOCOCOCO_2"
-say_wizard "#{prefs[:tests]}"
-
 HOST_OS = RbConfig::CONFIG['host_os']
 say_wizard "Your operating system is #{HOST_OS}."
 say_wizard "You are using Ruby version #{RUBY_VERSION}."

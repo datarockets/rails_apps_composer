@@ -147,17 +147,7 @@ module RailsWizard
       end
 
       def ask_for_args(defaults)
-        args = []
-        default_args = defaults["args"] || {}
-        s = 'Would you like to skip'
-
-        question = "#{s} Test::Unit? (yes for RSpec)"
-        args << "-T" if ask_for_arg(question, default_args[:skip_test_unit])
-
-        question = "#{s} Active Record? (yes for MongoDB)"
-        args << "-O" if ask_for_arg(question, default_args[:skip_active_record])
-
-        args
+        args = ["-T"] #skip unit test
       end
 
       def make_red(s)

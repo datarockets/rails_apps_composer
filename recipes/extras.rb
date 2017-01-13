@@ -3,16 +3,9 @@
 
 ## RVMRC
 if prefs[:rvmrc]
-   if File.exist?('.ruby-version')
-     say_wizard ".ruby-version file already exists"
-   else
-     create_file '.ruby-version', "#{RUBY_VERSION}\n"
-   end
-   if File.exist?('.ruby-gemset')
-     say_wizard ".ruby-gemset file already exists"
-   else
-     create_file '.ruby-gemset', "#{app_name}\n"
-   end
+ unless File.exist?('.ruby-version')
+   create_file '.ruby-version', "#{RUBY_VERSION}\n"
+ end
 end
 
 ## LOCAL_ENV.YML FILE
@@ -44,38 +37,30 @@ if prefs[:better_errors]
 end
 
 # Pry
-prefs[:pry] = true if config['pry']
-if prefs[:pry]
+if config['pry'] || prefs[:pry]
   say_wizard "recipe adding pry-rails gem"
   add_gem 'pry-rails', :group => [:development, :test]
   add_gem 'pry-rescue', :group => [:development, :test]
 end
 
 ## Rubocop
-prefs[:rubocop] = true if config['rubocop']
-if prefs[:rubocop]
+if config['rubocop'] || prefs[:rubocop]
   say_wizard "recipe adding rubocop gem and basic .rubocop.yml"
   add_gem 'rubocop', :group => [:development, :test]
-  copy_from_repo '.rubocop.yml'
+  copy_from 'https://raw.github.com/datarockets/rails_apps_composer/master/files/rubocop.txt', '.rubocop.yml'
 end
 
 ## Disable Turbolinks
-if config['disable_turbolinks']
-  prefs[:disable_turbolinks] = true
-end
-if prefs[:disable_turbolinks]
+if config['disable_turbolinks'] || prefs[:disable_turbolinks]
   say_wizard "recipe removing support for Rails Turbolinks"
   stage_two do
     say_wizard "recipe stage two"
     gsub_file 'Gemfile', /gem 'turbolinks'\n/, ''
     gsub_file 'app/assets/javascripts/application.js', "//= require turbolinks\n", ''
-    case prefs[:templates]
-      when 'erb'
-        gsub_file 'app/views/layouts/application.html.erb', /, 'data-turbolinks-track' => true/, ''
-      when 'haml'
-        gsub_file 'app/views/layouts/application.html.haml', /, 'data-turbolinks-track' => true/, ''
-      when 'slim'
-        gsub_file 'app/views/layouts/application.html.slim', /, 'data-turbolinks-track' => true/, ''
+    if prefs[:templates] == 'slim'
+      gsub_file 'app/views/layouts/application.html.slim', /, 'data-turbolinks-track' => true/, ''
+    else
+      gsub_file 'app/views/layouts/application.html.erb', /, 'data-turbolinks-track' => true/, ''
     end
   end
 end
