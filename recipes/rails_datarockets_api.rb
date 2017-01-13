@@ -85,7 +85,6 @@ prefs[:rvmrc] = true
 
     # >-------------------------------[ Tests ]--------------------------------<
 
-    ### tests not implemented
 
   # end
 
