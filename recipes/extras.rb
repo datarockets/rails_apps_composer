@@ -89,8 +89,8 @@ stage_four do
     gsub_file 'Gemfile', /.*gem 'html2haml'\n/, "\n"
   end
   # remove gems and files used to assist rails_apps_composer
-  gsub_file 'Gemfile', /.*gem 'rails_apps_pages'\n/, ''
-  gsub_file 'Gemfile', /.*gem 'rails_apps_testing'\n/, ''
+  # gsub_file 'Gemfile', /.*gem 'rails_apps_pages'\n/, '' TESTED
+  # gsub_file 'Gemfile', /.*gem 'rails_apps_testing'\n/, '' TESTED
   remove_file 'config/railscomposer.yml'
   # remove commented lines and multiple blank lines from Gemfile
   # thanks to https://github.com/perfectline/template-bucket/blob/master/cleanup.rb

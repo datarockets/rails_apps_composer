@@ -8,6 +8,7 @@ prefs[:github] = true
 prefs[:frontend] = 'none'
 prefs[:analytics] = 'none'
 prefs[:email] = 'smtp'
+prefs[:capybara] = false
 prefs[:templates] = 'erb'
 prefs[:continuous_testing] = 'none'
 prefs[:tests] = 'rspec'
