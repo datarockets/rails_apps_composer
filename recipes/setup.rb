@@ -1,5 +1,3 @@
-# Application template recipe for the rails_apps_composer. Change the recipe here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/setup.rb
 
 ## Ruby on Rails
 HOST_OS = RbConfig::CONFIG['host_os']
@@ -23,7 +21,7 @@ prefs[:prod_webserver] = prefs[:dev_webserver] if prefs[:prod_webserver] == 'sam
 ## Database Adapter
 prefs[:database] = "sqlite" if prefer :database, 'default'
 prefs[:database] = multiple_choice "Database used in development?", [["SQLite", "sqlite"], ["PostgreSQL", "postgresql"],
-  ["MySQL", "mysql"]] unless prefs.has_key? :database
+  ] unless prefs.has_key? :database
 
 ## Template Engine
 prefs[:templates] = multiple_choice "Template engine?", [["ERB", "erb"], ["Slim", "slim"]] unless prefs.has_key? :templates
@@ -31,10 +29,10 @@ prefs[:templates] = multiple_choice "Template engine?", [["ERB", "erb"], ["Slim"
 ## Testing Framework
 if recipes.include? 'tests'
   prefs[:tests] = multiple_choice "Test framework?", [["None", "none"],
-    ["RSpec with Capybara", "rspec"]] unless prefs.has_key? :tests
+    ["RSpec with Capybara", "rspec"], ["RSpec with Capybara", "rspec_without_capybara"]] unless prefs.has_key? :tests
   case prefs[:tests]
     when 'rspec'
-      say_wizard "Adding DatabaseCleaner, FactoryGirl, Faker, Launchy, Selenium"
+      say_wizard "Adding DatabaseCleaner, FactoryGirl, Faker, Launchy"
       prefs[:continuous_testing] = multiple_choice "Continuous testing?", [["None", "none"], ["Guard", "guard"]] unless prefs.has_key? :continuous_testing
     end
 end
@@ -83,46 +81,6 @@ end
 ## (no simple_form for Bootstrap 4 yet)
 unless prefs[:frontend] == 'bootstrap4'
   prefs[:form_builder] = multiple_choice "Use a form builder gem?", [["None", "none"], ["SimpleForm", "simple_form"]] unless prefs.has_key? :form_builder
-end
-
-## Pages
-if recipes.include? 'pages'
-  prefs[:pages] = multiple_choice "Add pages?", [["None", "none"],
-    ["Home", "home"], ["Home and About", "about"],
-    ["Home and Users", "users"],
-    ["Home, About, and Users", "about+users"]] unless prefs.has_key? :pages
-end
-
-# save configuration before anything can fail
-create_file 'config/railscomposer.yml', "# This application was generated with Rails Composer\n\n"
-append_to_file 'config/railscomposer.yml' do <<-TEXT
-development:
-  apps4: #{prefs[:apps4]}
-  announcements: #{prefs[:announcements]}
-  dev_webserver: #{prefs[:dev_webserver]}
-  prod_webserver: #{prefs[:prod_webserver]}
-  database: #{prefs[:database]}
-  templates: #{prefs[:templates]}
-  tests: #{prefs[:tests]}
-  continuous_testing: #{prefs[:continuous_testing]}
-  frontend: #{prefs[:frontend]}
-  email: #{prefs[:email]}
-  authentication: #{prefs[:authentication]}
-  devise_modules: #{prefs[:devise_modules]}
-  omniauth_provider: #{prefs[:omniauth_provider]}
-  authorization: #{prefs[:authorization]}
-  form_builder: #{prefs[:form_builder]}
-  pages: #{prefs[:pages]}
-  layouts: #{prefs[:layouts]}
-  analytics: #{prefs[:analytics]}
-  deployment: #{prefs[:deployment]}
-  github: #{prefs[:github]}
-  local_env_file: #{prefs[:local_env_file]}
-  better_errors: #{prefs[:better_errors]}
-  pry: #{prefs[:pry]}
-  rvmrc: #{prefs[:rvmrc]}
-  dashboard: #{prefs[:dashboard]}
-TEXT
 end
 
 __END__
