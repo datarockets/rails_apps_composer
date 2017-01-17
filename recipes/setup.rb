@@ -28,13 +28,12 @@ prefs[:templates] = multiple_choice "Template engine?", [["ERB", "erb"], ["Slim"
 
 ## Testing Framework
 if recipes.include? 'tests'
-  prefs[:tests] = multiple_choice "Test framework?", [["None", "none"],
-    ["RSpec with Capybara", "rspec"], ["RSpec with Capybara", "rspec_without_capybara"]] unless prefs.has_key? :tests
-  case prefs[:tests]
-    when 'rspec'
-      say_wizard "Adding DatabaseCleaner, FactoryGirl, Faker, Launchy"
-      prefs[:continuous_testing] = multiple_choice "Continuous testing?", [["None", "none"], ["Guard", "guard"]] unless prefs.has_key? :continuous_testing
-    end
+  prefs[:tests] = multiple_choice "Test framework?", [["None", "none"], ["RSpec", "rspec"]] unless prefs.has_key? :tests
+  if prefs[:tests] == 'rspec'
+    prefs[:capybara] = yes_wizard? "Use Capybara?" unless prefs.has_key? :capybara
+    say_wizard "Adding DatabaseCleaner, FactoryGirl, Faker"
+    prefs[:continuous_testing] = multiple_choice "Continuous testing?", [["None", "none"], ["Guard", "guard"]] unless prefs.has_key? :continuous_testing
+  end
 end
 
 ## Front-end Framework
