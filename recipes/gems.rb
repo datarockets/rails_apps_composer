@@ -36,7 +36,6 @@ gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
 gsub_file 'Gemfile', /gem 'pg'.*/, ''
 add_gem 'pg' if prefer :database, 'postgresql'
 gsub_file 'Gemfile', /gem 'mysql2'.*/, ''
-add_gem 'mysql2', '~> 0.3.18' if prefer :database, 'mysql'
 
 ## Gem to set up controllers, views, and routing in the 'apps4' recipe
 add_gem 'rails_apps_pages', :group => :development if prefs[:apps4]
@@ -57,8 +56,6 @@ if prefer :tests, 'rspec'
   add_gem 'faker', :group => [:development, :test]
   add_gem 'capybara', :group => :test
   add_gem 'database_cleaner', :group => :test
-  add_gem 'launchy', :group => :test
-  add_gem 'selenium-webdriver', :group => :test
   if prefer :continuous_testing, 'guard'
     add_gem 'guard-bundler', :group => :development
     add_gem 'guard-rails', :group => :development
@@ -76,14 +73,6 @@ case prefs[:frontend]
     add_gem 'bootstrap', '~> 4.0.0.alpha3.1'
   when 'foundation5'
     add_gem 'foundation-rails', '~> 5.5'
-end
-
-## Pages
-case prefs[:pages]
-  when 'about'
-    add_gem 'high_voltage'
-  when 'about+users'
-    add_gem 'high_voltage'
 end
 
 ## Authentication (Devise)
@@ -128,7 +117,6 @@ stage_two do
   say_wizard "configuring database"
   unless prefer :database, 'sqlite'
     copy_from_repo 'config/database-postgresql.yml', :prefs => 'postgresql'
-    copy_from_repo 'config/database-mysql.yml', :prefs => 'mysql'
     if prefer :database, 'postgresql'
       begin
         pg_username = prefs[:pg_username] || ask_wizard("Username for PostgreSQL?(leave blank to use the app name)")
@@ -153,20 +141,7 @@ stage_two do
       gsub_file "config/database.yml", /database: myapp_test/,        "database: #{app_name}_test"
       gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
     end
-    if prefer :database, 'mysql'
-      mysql_username = prefs[:mysql_username] || ask_wizard("Username for MySQL? (leave blank to use the app name)")
-      if mysql_username.blank?
-        gsub_file "config/database.yml", /username: .*/, "username: #{app_name}"
-      else
-        gsub_file "config/database.yml", /username: .*/, "username: #{mysql_username}"
-        mysql_password = prefs[:mysql_password] || ask_wizard("Password for MySQL user #{mysql_username}?")
-        gsub_file "config/database.yml", /password:/, "password: #{mysql_password}"
-        say_wizard "set config/database.yml for username/password #{mysql_username}/#{mysql_password}"
-      end
-      gsub_file "config/database.yml", /database: myapp_development/, "database: #{app_name}_development"
-      gsub_file "config/database.yml", /database: myapp_test/,        "database: #{app_name}_test"
-      gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
-    end
+
     unless prefer :database, 'sqlite'
       if (prefs.has_key? :drop_database) ? prefs[:drop_database] :
           (yes_wizard? "Okay to drop all existing databases named #{app_name}? 'No' will abort immediately!")

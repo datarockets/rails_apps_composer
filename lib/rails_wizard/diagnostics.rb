@@ -17,10 +17,6 @@ module RailsWizard
     @@recipes << %w(extras gems git readme setup)
     @@recipes << %w(email extras frontend gems git init railsapps readme setup testing)
     @@recipes << %w(core email extras frontend gems git init railsapps readme setup testing)
-    @@recipes << %w(core email extras frontend gems git init railsapps readme setup testing)
-    @@recipes << %w(core email extras frontend gems git init railsapps readme setup testing)
-    @@recipes << %w(email example extras frontend gems git init railsapps readme setup testing)
-    @@recipes << %w(email example extras frontend gems git init railsapps readme setup testing)
     @@recipes << %w(email example extras frontend gems git init railsapps readme setup testing)
     @@recipes << %w(apps4 core email extras frontend gems git init railsapps readme setup testing)
     @@recipes << %w(apps4 core email extras frontend gems git init railsapps readme setup tests)
@@ -31,7 +27,6 @@ module RailsWizard
     ### collections of preferences that are known to work together
 
     # ignore these preferences (because they don't cause conflicts)
-    # :ban_spiders
     # :better_errors
     # :dev_webserver
     # :git

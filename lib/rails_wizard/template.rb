@@ -6,16 +6,8 @@ module RailsWizard
       @recipes = recipes.map{|r| RailsWizard::Recipe.from_mongo(r)}
       @args = args
       @defaults = defaults
-      unless defaults['prefs'].nil?
-        @prefs = defaults['prefs']
-      else
-        @prefs = {}
-      end
-      unless defaults['gems'].nil?
-        @gems = gems | defaults['gems']
-      else
-        @gems = gems
-      end
+      @prefs = defaults['prefs'] || {}
+      @gems = gems | (defaults['gems'] || [])
     end
 
     def self.template_root

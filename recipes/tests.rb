@@ -1,6 +1,3 @@
-# Application template recipe for the rails_apps_composer. Change the recipe here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/tests.rb
-
 stage_two do
   say_wizard "recipe stage two"
   if prefer :tests, 'rspec'

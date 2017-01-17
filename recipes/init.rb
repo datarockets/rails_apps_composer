@@ -152,5 +152,5 @@ description: "Set up and initialize database."
 author: RailsApps
 
 requires: [setup, gems, devise, omniauth]
-run_after: [setup, gems, pages]
+run_after: [setup, gems]
 category: initialize
