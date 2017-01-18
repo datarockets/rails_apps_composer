@@ -37,10 +37,8 @@ stage_three do
         inject_into_file 'spec/factories/users.rb', "    confirmed_at Time.now\n", :after => "factory :user do\n"
       end
     end
-    # unless %w(users about+users).include?(prefs[:pages])
-    #   remove_file 'spec/features/users/user_index_spec.rb'
-    #   remove_file 'spec/features/users/user_show_spec.rb'
-    # end
+    remove_file 'spec/features/users/user_index_spec.rb'
+    remove_file 'spec/features/users/user_show_spec.rb'
   end
 end
 

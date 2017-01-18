@@ -17,7 +17,7 @@ else
     ["Custom application (experimental)", "none"]] unless prefs.has_key? :apps4
   if prefs[:apps4] == 'railsapps'
     prefs[:apps4] = multiple_choice "Choose a starter application.",
-        [["rails-datarockets-api", "rails-datarockets-api"]]
+        [["rails-datarockets-api", "rails-datarockets-api"], ["rails-fullstack-app", "rails-fullstack-app"]]
   end
 end
 
