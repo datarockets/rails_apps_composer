@@ -27,8 +27,6 @@ prefs[:rvmrc] = true
 # end
   # gems
   # add_gem 'gibbon'
-  # add_gem 'payola-payments'
-  # add_gem 'sucker_punch'
 
   # stage_three do
   #   say_wizard "recipe stage three"

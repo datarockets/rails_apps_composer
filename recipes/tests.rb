@@ -30,18 +30,17 @@ stage_three do
     end
     if (prefer :authorization, 'roles') || (prefer :authorization, 'pundit')
       generate 'testing:configure pundit -f'
-      remove_file 'spec/policies/user_policy_spec.rb' unless %w(users about+users).include?(prefs[:pages])
-      remove_file 'spec/policies/user_policy_spec.rb' if prefer :authorization, 'roles'
+      remove_file 'spec/policies/user_policy_spec.rb' 
       remove_file 'spec/support/pundit.rb' if prefer :authorization, 'roles'
       if (prefer :authentication, 'devise') &&\
         ((prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable'))
         inject_into_file 'spec/factories/users.rb', "    confirmed_at Time.now\n", :after => "factory :user do\n"
       end
     end
-    unless %w(users about+users).include?(prefs[:pages])
-      remove_file 'spec/features/users/user_index_spec.rb'
-      remove_file 'spec/features/users/user_show_spec.rb'
-    end
+    # unless %w(users about+users).include?(prefs[:pages])
+    #   remove_file 'spec/features/users/user_index_spec.rb'
+    #   remove_file 'spec/features/users/user_show_spec.rb'
+    # end
   end
 end
 

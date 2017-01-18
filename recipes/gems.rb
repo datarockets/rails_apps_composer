@@ -35,7 +35,6 @@ end
 gsub_file 'Gemfile', /gem 'sqlite3'\n/, '' unless prefer :database, 'sqlite'
 gsub_file 'Gemfile', /gem 'pg'.*/, ''
 add_gem 'pg' if prefer :database, 'postgresql'
-# gsub_file 'Gemfile', /gem 'mysql2'.*/, ''    TESTED
 
 ## Gem to set up controllers, views, and routing in the 'apps4' recipe
 # add_gem 'rails_apps_pages', :group => :development if prefs[:apps4] TESTED
@@ -49,6 +48,7 @@ end
 
 ## Testing Framework
 if prefer :tests, 'rspec'
+  add_gem 'rails_apps_testing', :group => :development
   add_gem 'rspec-rails', :group => [:development, :test]
   add_gem 'spring-commands-rspec', :group => :development
   add_gem 'factory_girl_rails', :group => [:development, :test]
