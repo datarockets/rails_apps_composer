@@ -1,8 +1,6 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rails_stripe_membership_saas.rb
 
-# say_wizard(prefer :apps4, 'rails-datarockets-api')
-# if prefer :apps4, 'rails-datarockets-api'
 prefs[:apps4] = 'rails-datarockets-api'
 prefs[:github] = true
 prefs[:frontend] = 'none'
@@ -12,10 +10,8 @@ prefs[:capybara] = false
 prefs[:templates] = 'erb'
 prefs[:continuous_testing] = 'none'
 prefs[:tests] = 'rspec'
-prefs[:dashboard] = 'none'
 prefs[:deployment] = 'capistrano3'
-prefs[:announcements] = 'none'
-prefs[:authentication] = 'devise'
+prefs[:authentication] = 'none'
 prefs[:authorization] = 'none'
 prefs[:better_errors] = true
 prefs[:form_builder] = 'none'
@@ -24,7 +20,7 @@ prefs[:pry] = true
 prefs[:disable_turbolinks] = true
 prefs[:rubocop] = true
 prefs[:rvmrc] = true
-# end
+
   # gems
   # add_gem 'gibbon'
 
@@ -43,7 +39,6 @@ prefs[:rvmrc] = true
     # >-------------------------------[ Config ]---------------------------------<
 
     # copy_from_repo 'config/initializers/active_job.rb', :repo => repo
-    # copy_from_repo 'config/initializers/payola.rb', :repo => repo
     # copy_from_repo 'db/seeds.rb', :repo => repo
 
     # >-------------------------------[ Assets ]--------------------------------<
@@ -53,7 +48,6 @@ prefs[:rvmrc] = true
     # # >-------------------------------[ Controllers ]--------------------------------<
 
     # copy_from_repo 'app/controllers/application_controller.rb', :repo => repo
-    # copy_from_repo 'app/controllers/content_controller.rb', :repo => repo
 
     # >-------------------------------[ Jobs ]---------------------------------<
 
@@ -62,11 +56,9 @@ prefs[:rvmrc] = true
     # >-------------------------------[ Mailers ]--------------------------------<
 
     # copy_from_repo 'app/mailers/application_mailer.rb', :repo => repo
-    # copy_from_repo 'app/mailers/user_mailer.rb', :repo => repo
 
     # >-------------------------------[ Models ]--------------------------------<
 
-    # copy_from_repo 'app/models/plan.rb', :repo => repo
     # copy_from_repo 'app/models/user.rb', :repo => repo
 
     # >-------------------------------[ Services ]---------------------------------<
@@ -76,7 +68,6 @@ prefs[:rvmrc] = true
     # >-------------------------------[ Views ]--------------------------------<
 
     # copy_from_repo 'app/views/content/gold.html.erb', :repo => repo
-    # copy_from_repo 'app/views/content/platinum.html.erb', :repo => repo
 
     # >-------------------------------[ Routes ]--------------------------------<
 

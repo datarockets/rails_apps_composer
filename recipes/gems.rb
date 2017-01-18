@@ -83,12 +83,6 @@ if prefer :authentication, 'devise'
     add_gem 'devise_invitable' if prefer :devise_modules, 'invitable'
 end
 
-## Administratative Interface
-if prefer :dashboard, 'administrate'
-  add_gem 'administrate'
-  add_gem 'bourbon'
-end
-
 ## Authentication (OmniAuth)
 add_gem 'omniauth' if prefer :authentication, 'omniauth'
 add_gem 'omniauth-twitter' if prefer :omniauth_provider, 'twitter'

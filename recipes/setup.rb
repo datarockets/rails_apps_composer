@@ -68,12 +68,6 @@ if (recipes.include? 'devise') || (recipes.include? 'omniauth')
         ["LinkedIn", "linkedin"], ["Google-Oauth-2", "google_oauth2"], ["Tumblr", "tumblr"]] unless prefs.has_key? :omniauth_provider
   end
   prefs[:authorization] = multiple_choice "Authorization?", [["None", "none"], ["Simple role-based", "roles"], ["Pundit", "pundit"]] unless prefs.has_key? :authorization
-  if prefer :authentication, 'devise'
-    if (prefer :authorization, 'roles') || (prefer :authorization, 'pundit')
-      prefs[:dashboard] = multiple_choice "Admin interface for database?", [["None", "none"],
-        ["Thoughtbot Administrate", "administrate"]] unless prefs.has_key? :dashboard
-    end
-  end
 end
 
 ## Form Builder
