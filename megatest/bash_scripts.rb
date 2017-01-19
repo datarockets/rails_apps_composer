@@ -33,19 +33,6 @@ BASH
 # Utilities:
 rails_apps_composer
 rails-composer
-
-# Obsolete Rails 3 apps:
-Which apps are obsolete?
-
-# Can these work?
-rails3-bootstrap-devise-cancan
-rails3-devise-rspec-cucumber
-rails3-mongoid-devise
-rails3-mongoid-omniauth
-rails3-subdomains
-rails-prelaunch-signup
-rails-recurly-subscription-saas
-rails-stripe-membership-saas
 =end
 
 CREATE_REPOSITORY_LIST_SCRIPT = <<BASH
