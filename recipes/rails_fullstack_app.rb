@@ -7,7 +7,7 @@ prefs[:templates] = 'slim'
 prefs[:continuous_testing] = 'none'
 prefs[:tests] = 'rspec'
 prefs[:deployment] = 'capistrano3'
-prefs[:authentication] = 'none'
+# prefs[:authentication] = 'none'
 prefs[:authorization] = 'none'
 prefs[:better_errors] = true
 prefs[:form_builder] = 'simple_form'
@@ -16,6 +16,8 @@ prefs[:pry] = true
 prefs[:disable_turbolinks] = true
 prefs[:rubocop] = true
 prefs[:rvmrc] = true
+prefs[:dev_webserver] = 'puma'
+prefs[:prod_webserver] = 'puma'
 
 add_gem "cells"
 add_gem "cells-rails"

@@ -11,12 +11,9 @@ sqlite_detected = gemfile.include? 'sqlite3'
 
 ## Web Server
 prefs[:dev_webserver] = multiple_choice "Web server for development?", [["Puma (default)", "puma"],
-  ["Thin", "thin"], ["Unicorn", "unicorn"], ["Phusion Passenger (Apache/Nginx)", "passenger"],
-  ["Phusion Passenger (Standalone)", "passenger_standalone"]] unless prefs.has_key? :dev_webserver
-prefs[:prod_webserver] = multiple_choice "Web server for production?", [["Same as development", "same"],
-  ["Thin", "thin"], ["Unicorn", "unicorn"], ["Phusion Passenger (Apache/Nginx)", "passenger"],
-  ["Phusion Passenger (Standalone)", "passenger_standalone"]] unless prefs.has_key? :prod_webserver
-prefs[:prod_webserver] = prefs[:dev_webserver] if prefs[:prod_webserver] == 'same'
+  ["Thin", "thin"], ["Unicorn", "unicorn"]] unless prefs.has_key? :dev_webserver
+prefs[:prod_webserver] = multiple_choice "Web server for production?", [["Puma (default)", "puma"],
+  ["Thin", "thin"], ["Unicorn", "unicorn"]] unless prefs.has_key? :prod_webserver
 
 ## Database Adapter
 prefs[:database] = "sqlite" if prefer :database, 'default'
