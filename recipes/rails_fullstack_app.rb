@@ -1,11 +1,12 @@
 prefs[:apps4] = 'rails-fullstack-app'
-prefs[:github] = true
+# prefs[:github] = true
 prefs[:analytics] = 'none'
 prefs[:email] = 'smtp'
 prefs[:templates] = 'slim'
 prefs[:continuous_testing] = 'none'
 prefs[:tests] = 'rspec'
 prefs[:deployment] = 'capistrano3'
+prefs[:capybara] = true
 prefs[:authorization] = 'none'
 prefs[:better_errors] = true
 prefs[:form_builder] = 'simple_form'
@@ -16,6 +17,7 @@ prefs[:rubocop] = true
 prefs[:rvmrc] = true
 prefs[:dev_webserver] = 'puma'
 prefs[:prod_webserver] = 'puma'
+prefs[:database] = 'postgresql'
 
 add_gem "cells"
 add_gem "cells-rails"
