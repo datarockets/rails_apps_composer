@@ -100,7 +100,6 @@ gems.each do |g|
   add_gem(*g)
 end
 
-## Git
 git :add => '-A' if prefer :git, true
 git :commit => '-qm "rails_apps_composer: Gemfile"' if prefer :git, true
 

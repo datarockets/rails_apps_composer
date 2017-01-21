@@ -1,8 +1,6 @@
-# Application template recipe for the rails_apps_composer. Change the recipe here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/rails_stripe_membership_saas.rb
 
 prefs[:apps4] = 'rails-datarockets-api'
-prefs[:github] = true
+# prefs[:github] = true
 prefs[:frontend] = 'none'
 prefs[:analytics] = 'none'
 prefs[:email] = 'smtp'
@@ -22,6 +20,7 @@ prefs[:rubocop] = true
 prefs[:rvmrc] = true
 prefs[:dev_webserver] = 'puma'
 prefs[:prod_webserver] = 'puma'
+prefs[:database] = 'postgresql'
 
   # gems
   # add_gem 'gibbon'

@@ -21,10 +21,11 @@ stage_two do
   get '/auth/failure' => 'sessions#failure'
 TEXT
     inject_into_file 'config/routes.rb', routes + "\n", :after => "routes.draw do\n"
+
+    ### GIT ###
+    git :add => '-A' if prefer :git, true
+    git :commit => '-qm "rails_apps_composer: omniauth"' if prefer :git, true
   end
-  ### GIT ###
-  git :add => '-A' if prefer :git, true
-  git :commit => '-qm "rails_apps_composer: omniauth"' if prefer :git, true
 end
 
 __END__

@@ -23,10 +23,11 @@ stage_two do
 RUBY
     end
     inject_into_class 'app/models/user.rb', 'User', role_boilerplate
+
+    ### GIT ###
+    git :add => '-A' if prefer :git, true
+    git :commit => '-qm "rails_apps_composer: add roles to a User model"' if prefer :git, true
   end
-  ### GIT ###
-  git :add => '-A' if prefer :git, true
-  git :commit => '-qm "rails_apps_composer: add roles to a User model"' if prefer :git, true
 end
 
 __END__
