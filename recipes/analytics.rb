@@ -4,7 +4,7 @@ prefs[:analytics] = multiple_choice "Install page-view analytics?", [["None", "n
   
 if prefs[:analytics] == 'ga'
     ga_id = ask_wizard('Google Analytics ID?')
-elsif 'segmentio'
+elsif prefs[:analytics] == 'segmentio'
     segmentio_api_key = ask_wizard('Segment.com Write Key?')
 end
 
@@ -13,15 +13,14 @@ stage_two do
   unless prefer :analytics, 'none'
     add_gem 'rails_apps_pages', :group => :development unless prefs[:apps4]
   end
-  case prefs[:analytics]
-    when 'ga'
-      generate 'analytics:google -f'
-      gsub_file 'app/assets/javascripts/google_analytics.js.coffee', /UA-XXXXXXX-XX/, ga_id
-    when 'segmentio'
-      generate 'analytics:segmentio -f'
-      gsub_file 'app/assets/javascripts/segmentio.js', /SEGMENTIO_API_KEY/, segmentio_api_key
+  if prefs[:analytics] == 'ga'
+    generate 'analytics:google -f'
+    gsub_file 'app/assets/javascripts/google_analytics.js.coffee', /UA-XXXXXXX-XX/, ga_id
+  elsif prefs[:analytics] == 'segmentio'
+    generate 'analytics:segmentio -f'
+    gsub_file 'app/assets/javascripts/segmentio.js', /SEGMENTIO_API_KEY/, segmentio_api_key
   end
-  ### GIT ###
+
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: add analytics"' if prefer :git, true
 end
