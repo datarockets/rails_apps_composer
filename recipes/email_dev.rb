@@ -34,7 +34,7 @@ RUBY
     if prefer(:local_env_file, 'foreman') && File.exists?('Procfile.dev')
       append_file 'Procfile.dev', "mail: mailcatcher --foreground\n"
     end
-    ### GIT
+
     git :add => '-A' if prefer :git, true
     git :commit => '-qm "rails_apps_composer: set up mailcatcher for development"' if prefer :git, true
   end
@@ -66,7 +66,7 @@ end
 RUBY
     end
     inject_into_file 'config/routes.rb', "mount MailPreview => 'mail_view' if Rails.env.development?", :before => "end"
-    ### GIT
+
     git :add => '-A' if prefer :git, true
     git :commit => '-qm "rails_apps_composer: set up mail_view for development"' if prefer :git, true
   end

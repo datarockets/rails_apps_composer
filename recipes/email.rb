@@ -1,9 +1,8 @@
-# Application template recipe for the rails_apps_composer. Change the recipe here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/email.rb
 
 stage_two do
-  say_wizard "recipe stage two"
   unless prefer :email, 'none'
+    say_wizard "recipe stage two"
+
     ## ACTIONMAILER CONFIG
     dev_email_text = <<-TEXT
   # ActionMailer Config
@@ -48,10 +47,10 @@ TEXT
         gsub_file 'config/environments/development.rb', /email_provider_password/, 'email_provider_apikey'
         gsub_file 'config/environments/production.rb', /email_provider_password/, 'email_provider_apikey'
     end
+
+    git :add => '-A' if prefer :git, true
+    git :commit => '-qm "rails_apps_composer: set email accounts"' if prefer :git, true
   end
-  ### GIT
-  git :add => '-A' if prefer :git, true
-  git :commit => '-qm "rails_apps_composer: set email accounts"' if prefer :git, true
 end
 
 __END__

@@ -99,7 +99,7 @@ stage_four do
   # remove commented lines and multiple blank lines from config/routes.rb
   gsub_file 'config/routes.rb', /  #.*\n/, "\n"
   gsub_file 'config/routes.rb', /\n^\s*\n/, "\n"
-  # GIT
+
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: extras"' if prefer :git, true
 end
@@ -120,6 +120,7 @@ if prefs[:github]
       run "hub push -u origin master"
     end
   end
+  gsub_file 'Gemfile', /gem 'hub'\n/, ''
 end
 
 __END__
