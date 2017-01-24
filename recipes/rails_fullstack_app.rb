@@ -22,7 +22,6 @@ prefs[:database] = 'postgresql'
 add_gem "cells"
 add_gem "cells-rails"
 add_gem 'cells-slim'
-add_gem  'jbuilder', '~> 2.4'
 
 __END__
 
