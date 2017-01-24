@@ -22,6 +22,8 @@ prefs[:dev_webserver] = 'puma'
 prefs[:prod_webserver] = 'puma'
 prefs[:database] = 'postgresql'
 
+add_gem  'jbuilder', '~> 2.4'
+
   # gems
   # add_gem 'gibbon'
 
