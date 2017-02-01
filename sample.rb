@@ -71,6 +71,6 @@ say_wizard multiple_choice("What do you like?", [["Puppies","puppies"],["Kitties
 # >-----------------------------[ Run Bundler ]-------------------------------<
 
 say_wizard "Running Bundler install. This will take a while."
-run 'bundle install'
+run 'bundle install --path vendor/bundle'
 say_wizard "Running after Bundler callbacks."
 @after_blocks.each{|b| b.call}

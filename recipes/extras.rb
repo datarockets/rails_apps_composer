@@ -40,13 +40,12 @@ end
 if config['pry'] || prefs[:pry]
   say_wizard "recipe adding pry-rails gem"
   add_gem 'pry-rails', :group => [:development, :test]
-  add_gem 'pry-rescue', :group => [:development, :test]
 end
 
 ## Rubocop
 if config['rubocop'] || prefs[:rubocop]
   say_wizard "recipe adding rubocop gem and basic .rubocop.yml"
-  add_gem 'rubocop', :group => [:development, :test]
+  add_gem 'rubocop', require: false, :group => [:development, :test]
   add_gem 'rubocop-rspec'
   copy_from 'https://raw.github.com/datarockets/rails_apps_composer/master/files/rubocop.txt', '.rubocop.yml'
 end
@@ -107,7 +106,7 @@ end
 ## GITHUB
 prefs[:github] = true if config['github']
 if prefs[:github]
-  add_gem 'hub', :require => nil, :group => [:development]
+  add_gem 'hub', require: nil, group: [:development]
   stage_three do
     say_wizard "recipe stage three"
     say_wizard "recipe creating GitHub repository"
