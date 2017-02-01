@@ -3,13 +3,12 @@
 base_path = 'https://raw.github.com/datarockets/rails_apps_composer/master/files/'
 
 
-setup_text = <<-TEXT
-  ["puma.rb"].each do |config_file|
-    unless File.exist?("config/#{config_file}")
-      system "cp config/examples/#{config_file} config/#{config_file}"
-    end
+setup_text = '
+["puma.rb"].each do |config_file|
+  unless File.exist?("config/#{config_file}")
+    system "cp config/examples/#{config_file} config/#{config_file}"
   end
-TEXT
+end'
 
 prefs[:deployment] = multiple_choice "Prepare for deployment?", [["no", "none"],
     ["Heroku", "heroku"],
