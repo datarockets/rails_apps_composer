@@ -19,3 +19,4 @@
 
 /db/schema.rb
 
+/config/puma.rb

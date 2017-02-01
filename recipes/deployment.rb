@@ -2,6 +2,15 @@
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/deployment.rb
 base_path = 'https://raw.github.com/datarockets/rails_apps_composer/master/files/'
 
+
+setup_text = <<-TEXT
+  ["puma.rb"].each do |config_file|
+    unless File.exist?("config/#{config_file}")
+      system "cp config/examples/#{config_file} config/#{config_file}"
+    end
+  end
+TEXT
+
 prefs[:deployment] = multiple_choice "Prepare for deployment?", [["no", "none"],
     ["Heroku", "heroku"],
     ["Capistrano", "capistrano3"]] unless prefs.has_key? :deployment
@@ -35,11 +44,16 @@ if prefer :deployment, 'capistrano3'
     copy_from "#{base_path}/capfiles/#{prefs[:prod_webserver]}.txt", 'Capfile'
 
     if prefer :prod_webserver, 'puma'
+      insert_into_file('bin/setup', setup_text, after: /^ *chdir APP_ROOT do.*\n/, force: false)
+      insert_into_file('bin/update', setup_text, after: /^ *chdir APP_ROOT do.*\n/, force: false)
+
+      copy_from "#{base_path}/examples/puma.txt", 'config/examples/puma.rb'
+
       remove_file 'config/deploy/production.rb'
       copy_from "#{base_path}/deploy/#{prefs[:prod_webserver]}/production.txt", 'config/deploy/production.rb'
 
       gsub_file 'config/deploy.rb', /[^lock \'[\d, \.]*\'.*\n].*/, ''
-      file = File.open('files/deploy/puma/deploy.rb', 'r')
+      file = File.open('files/deploy/puma/deploy.txt', 'r')
       inject_into_file 'config/deploy.rb', file.read, before: /^end/
     end
   end
