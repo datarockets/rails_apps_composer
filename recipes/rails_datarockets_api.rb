@@ -22,7 +22,12 @@ prefs[:dev_webserver] = 'puma'
 prefs[:prod_webserver] = 'puma'
 prefs[:database] = 'postgresql'
 
-add_gem  'jbuilder', '~> 2.4'
+gsub_file 'Gemfile', /.*gem 'uglifier'.*\n/, ''
+gsub_file 'Gemfile', /.*gem 'sass-rails'.*\n/, ''
+gsub_file 'Gemfile', /.*gem 'coffee-rails'.*\n/, ''
+gsub_file 'Gemfile', /.*gem 'jquery-rails'.*\n/, ''
+gsub_file 'Gemfile', /.*gem 'turbolinks'.*\n/, ''
+gsub_file 'Gemfile', /.*gem 'tzinfo-data'.*\n/, ''
 
   # gems
   # add_gem 'gibbon'

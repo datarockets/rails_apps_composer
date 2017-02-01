@@ -159,7 +159,7 @@ end
 say_wizard "Installing Bundler (in case it is not installed)."
 run 'gem install bundler -v 1.12'
 say_wizard "Installing gems. This will take a while."
-run 'bundle install --without production'
+run 'bundle install --without production --path vendor/bundle'
 say_wizard "Updating gem paths."
 Gem.clear_paths
 # >-----------------------------[ Run 'stage_two' Callbacks ]-------------------------------<
