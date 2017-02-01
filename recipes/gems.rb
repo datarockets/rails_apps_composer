@@ -3,9 +3,6 @@
 
 ### GEMFILE ###
 
-## Ruby on Rails
-insert_into_file('Gemfile', "ruby '#{RUBY_VERSION}'\n", :before => /^ *gem 'rails'/, :force => false)
-
 ## Cleanup
 # remove the 'sdoc' gem
 if Rails::VERSION::MAJOR == 4 && Rails::VERSION::MINOR >= 2
