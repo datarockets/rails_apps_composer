@@ -8,6 +8,10 @@ if prefs[:rvmrc]
  end
 end
 
+# Ruby version file
+File.open('.ruby-version', "w+"){|file| file.write(RUBY_VERSION) }
+gsub_file 'config/deploy.rb', /ruby \'[\d, \.]*\'.*\n/, ''
+
 ## LOCAL_ENV.YML FILE
 prefs[:local_env_file] = config['local_env_file'] unless (config['local_env_file'] == 'none')
 
@@ -39,6 +43,8 @@ end
 # Pry
 if config['pry'] || prefs[:pry]
   say_wizard "recipe adding pry-rails gem"
+  gsub_file 'Gemfile', /.*gem 'byebug'.*\n/, ''
+  add_gem 'pry-byebug', :group => [:development, :test]
   add_gem 'pry-rails', :group => [:development, :test]
 end
 
