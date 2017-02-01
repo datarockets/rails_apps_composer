@@ -17,7 +17,7 @@ end
 
 if prefer :deployment, 'capistrano3'
   say_wizard "installing gems for Capistrano"
-  add_gem 'capistrano', '>= 3.6.0', group: :development
+  add_gem 'capistrano', '~> 3.6.0', group: :development
   add_gem 'capistrano-rbenv', group: :development
   add_gem 'capistrano-rails', '~> 1.1.0', group: :development
   add_gem 'capistrano-rails-console', group: :development
