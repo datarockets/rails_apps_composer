@@ -53,7 +53,7 @@ if prefer :deployment, 'capistrano3'
       copy_from "#{base_path}/deploy/#{prefs[:prod_webserver]}/production.txt", 'config/deploy/production.rb'
 
       gsub_file 'config/deploy.rb', /[^lock \'[\d, \.]*\'.*\n].*/, ''
-      file = File.open('/files/deploy/puma/deploy.txt', 'r')
+      file = File.open('files/deploy/puma/deploy.txt', 'r')
       inject_into_file 'config/deploy.rb', file.read, before: /^end/
     end
   end
