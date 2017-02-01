@@ -28,7 +28,6 @@ gsub_file 'Gemfile', /.*gem 'coffee-rails'.*\n/, ''
 gsub_file 'Gemfile', /.*gem 'jquery-rails'.*\n/, ''
 gsub_file 'Gemfile', /.*gem 'turbolinks'.*\n/, ''
 gsub_file 'Gemfile', /.*gem 'tzinfo-data'.*\n/, ''
-gsub_file 'Gemfile', /.*gem 'tzinfo-data'.*\n/, ''
 
   # gems
   # add_gem 'gibbon'
