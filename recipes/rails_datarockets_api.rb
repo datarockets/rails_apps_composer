@@ -29,6 +29,21 @@ gsub_file 'Gemfile', /.*gem 'jquery-rails'.*\n/, ''
 gsub_file 'Gemfile', /.*gem 'turbolinks'.*\n/, ''
 gsub_file 'Gemfile', /.*gem 'tzinfo-data'.*\n/, ''
 
+%w(helpers assets).each do |folder_name|
+  remove_dir "app/#{folder_name}"
+end
+
+%w(public/404.html public/500.html public/422.html config/initializers/assets.rb).each do |file_name|
+  remove_file file_name
+end
+
+insert_into_file('config/application.rb', 'config.api_only = true', 
+  after: /class Application < Rails::Application.*\n/, force: false)
+
+copy_from_file "initializers/jbuilder.rb", 'config/initializers/jbuilder.rb'
+
+gsub_file 'app/controllers/application_controller.tb', /.*protect_from_forgery with: :exception.*\n/, ''
+
   # gems
   # add_gem 'gibbon'
 

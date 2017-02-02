@@ -108,6 +108,8 @@ stage_two do
     copy_from_repo 'config/database-postgresql.yml', :prefs => 'postgresql'
     if prefer :database, 'postgresql'
       begin
+        copy_from_file 'database.yml', 'config/database.yml'
+
         pg_username = prefs[:pg_username] || ask_wizard("Username for PostgreSQL?(leave blank to use the app name)")
         pg_host = prefs[:pg_host] || ask_wizard("Host for PostgreSQL in database.yml? (leave blank to use default socket connection)")
         if pg_username.blank?
@@ -117,7 +119,7 @@ stage_two do
         else
           gsub_file "config/database.yml", /username: .*/, "username: #{pg_username}"
           pg_password = prefs[:pg_password] || ask_wizard("Password for PostgreSQL user #{pg_username}?")
-          gsub_file "config/database.yml", /password:/, "password: #{pg_password}"
+          gsub_file "config/database.yml", /password: .*\n/, "password: #{pg_password}"
           say_wizard "set config/database.yml for username/password #{pg_username}/#{pg_password}"
         end
         if pg_host.present?
