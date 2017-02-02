@@ -55,6 +55,9 @@ if config['rubocop'] || prefs[:rubocop]
   copy_from_file 'rubocop.txt', '.rubocop.yml'
 end
 
+## Add editorconfig
+copy_from_file 'editorconfig.txt', '.editorconfig'
+
 ## Disable Turbolinks
 if config['disable_turbolinks'] || prefs[:disable_turbolinks]
   say_wizard "recipe removing support for Rails Turbolinks"
