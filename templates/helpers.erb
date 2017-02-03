@@ -56,6 +56,8 @@ def stage_four(&block); @stage_four_blocks << [@current_recipe, block]; end
 @before_configs = {}
 def before_config(&block); @before_configs[@current_recipe] = block; end
 
+def base_path; 'https://raw.github.com/datarockets/rails_apps_composer/master/files/' end
+
 def copy_from(source, destination)
   begin
     remove_file destination
@@ -65,11 +67,15 @@ def copy_from(source, destination)
   end
 end
 
+def copy_from_file(source, destination)
+  copy_from("base_path + source", destination)
+end
+
 def copy_from_repo(filename, opts = {})
   repo = 'https://raw.github.com/RailsApps/rails-composer/master/files/'
   repo = opts[:repo] unless opts[:repo].nil?
   return if (!opts[:prefs].nil?) && (!prefs.has_value? opts[:prefs])
-    
+
   source_filename = filename
   destination_filename = filename
   unless opts[:prefs].nil?

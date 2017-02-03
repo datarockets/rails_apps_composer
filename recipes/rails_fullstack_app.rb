@@ -23,6 +23,8 @@ add_gem "cells"
 add_gem "cells-rails"
 add_gem 'cells-slim'
 
+remove_dir 'app/helpers'
+
 __END__
 
 name: rails_fullstack_app
