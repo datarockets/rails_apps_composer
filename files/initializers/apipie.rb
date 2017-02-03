@@ -1,5 +1,5 @@
 Apipie.configure do |config|
-  config.app_name = "myapp" # should be real app name
+  config.app_name = "myapp"
   config.validate = false
   config.process_params = false
   config.api_base_url = "/api"
