@@ -68,7 +68,7 @@ def copy_from(source, destination)
 end
 
 def copy_from_file(source, destination)
-  copy_from("base_path + source", destination)
+  copy_from(base_path + source, destination)
 end
 
 def copy_from_repo(filename, opts = {})
