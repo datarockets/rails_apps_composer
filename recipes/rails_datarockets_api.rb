@@ -37,12 +37,12 @@ end
   remove_file file_name
 end
 
-insert_into_file('config/application.rb', 'config.api_only = true', 
+insert_into_file('config/application.rb', 'config.api_only = true',
   after: /class Application < Rails::Application.*\n/, force: false)
 
 copy_from_file "initializers/jbuilder.rb", 'config/initializers/jbuilder.rb'
 
-gsub_file 'app/controllers/application_controller.tb', /.*protect_from_forgery with: :exception.*\n/, ''
+gsub_file 'app/controllers/application_controller.rb', /.*protect_from_forgery with: :exception.*\n/, ''
 
   # gems
   # add_gem 'gibbon'
