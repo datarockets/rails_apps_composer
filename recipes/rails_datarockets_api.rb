@@ -2,6 +2,7 @@
 prefs[:apps4] = 'rails-datarockets-api'
 # prefs[:github] = true
 prefs[:frontend] = 'none'
+prefs[:frontend] = 'doc'
 prefs[:analytics] = 'none'
 prefs[:email] = 'smtp'
 prefs[:capybara] = false
@@ -37,7 +38,7 @@ end
   remove_file file_name
 end
 
-insert_into_file('config/application.rb', 'config.api_only = true', 
+insert_into_file('config/application.rb', 'config.api_only = true',
   after: /class Application < Rails::Application.*\n/, force: false)
 
 copy_from_file "initializers/jbuilder.rb", 'config/initializers/jbuilder.rb'
@@ -109,7 +110,7 @@ description: "rails-datarockets-api starter application"
 author: RailsApps
 
 requires: [git,
-  setup, readme, gems,
+  setup, readme, gems, doc,
   tests,
   email,
   devise, omniauth, roles,
