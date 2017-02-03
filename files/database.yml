@@ -3,7 +3,6 @@ default: &default
   encoding: unicode
   username: username
   password: you_password
-  url: <%= ENV["DATABASE_URL"] %>
   host: localhost
   port: 5432
   pool: 5
@@ -22,3 +21,4 @@ test:
 production:
   <<: *default
   database: myapp_production
+  url: <%= ENV["DATABASE_URL"] %>
