@@ -152,6 +152,14 @@ end
 stage_two do
   say_wizard "recipe stage two"
   say_wizard "running generators"
+
+  ## Form
+  if prefer :forms, true
+    add_gem 'reform-rails', '~> 0.1'
+    add_gem 'virtus'
+    create_file 'app/forms/.keep', ''
+  end
+
   ## Form Builder
   if prefer :form_builder, 'simple_form'
     case prefs[:frontend]

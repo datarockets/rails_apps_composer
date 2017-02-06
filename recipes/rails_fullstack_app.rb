@@ -15,6 +15,7 @@ prefs[:pry] = true
 prefs[:disable_turbolinks] = true
 prefs[:rubocop] = true
 prefs[:rvmrc] = true
+prefs[:forms] = true
 prefs[:dev_webserver] = 'puma'
 prefs[:prod_webserver] = 'puma'
 prefs[:database] = 'postgresql'

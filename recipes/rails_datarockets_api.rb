@@ -15,6 +15,7 @@ prefs[:better_errors] = true
 prefs[:form_builder] = 'none'
 prefs[:git] = true
 prefs[:pry] = true
+prefs[:forms] = true
 prefs[:disable_turbolinks] = true
 prefs[:rubocop] = true
 prefs[:rvmrc] = true
@@ -37,7 +38,7 @@ end
   remove_file file_name
 end
 
-insert_into_file('config/application.rb', 'config.api_only = true', 
+insert_into_file('config/application.rb', 'config.api_only = true',
   after: /class Application < Rails::Application.*\n/, force: false)
 
 copy_from_file "initializers/jbuilder.rb", 'config/initializers/jbuilder.rb'
