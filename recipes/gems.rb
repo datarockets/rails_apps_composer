@@ -154,6 +154,7 @@ stage_two do
   say_wizard "running generators"
 
   ## Form
+  prefs[:forms] = yes_wizard? "Use Reform form?" unless prefs.has_key? :forms
   if prefer :forms, true
     add_gem 'reform-rails', '~> 0.1'
     add_gem 'virtus'
