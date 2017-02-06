@@ -16,6 +16,7 @@ prefs[:better_errors] = true
 prefs[:form_builder] = 'none'
 prefs[:git] = true
 prefs[:pry] = true
+prefs[:forms] = true
 prefs[:disable_turbolinks] = true
 prefs[:rubocop] = true
 prefs[:rvmrc] = true
