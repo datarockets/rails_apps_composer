@@ -2,7 +2,7 @@
 prefs[:apps4] = 'rails-datarockets-api'
 # prefs[:github] = true
 prefs[:frontend] = 'none'
-prefs[:frontend] = 'doc'
+prefs[:doc] = 'apipie'
 prefs[:analytics] = 'none'
 prefs[:email] = 'smtp'
 prefs[:capybara] = false

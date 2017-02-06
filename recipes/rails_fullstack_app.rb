@@ -1,6 +1,6 @@
 prefs[:apps4] = 'rails-fullstack-app'
 # prefs[:github] = true
-prefs[:frontend] = 'doc'
+prefs[:doc] = 'apipie'
 prefs[:analytics] = 'none'
 prefs[:email] = 'smtp'
 prefs[:templates] = 'slim'

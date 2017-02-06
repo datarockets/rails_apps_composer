@@ -51,8 +51,7 @@ if prefer :deployment, 'capistrano3'
 
       gsub_file 'config/deploy.rb', /[^lock \'[\d, \.]*\'.*\n].*/, ''
       file_name = URI.parse("#{base_path}/deploy/puma/deploy.txt")
-      file = Net::HTTP.get(file_name)
-      inject_into_file 'config/deploy.rb', file.read, before: /^end/
+      inject_into_file 'config/deploy.rb', Net::HTTP.get(file_name), before: /^end/
     end
   end
 end
