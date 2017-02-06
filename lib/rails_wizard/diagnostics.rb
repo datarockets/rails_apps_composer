@@ -15,14 +15,14 @@ module RailsWizard
     @@recipes << %w(gems git setup)
     @@recipes << %w(gems git readme setup)
     @@recipes << %w(extras gems git readme setup)
-    @@recipes << %w(email extras frontend gems git init railsapps readme setup testing)
-    @@recipes << %w(core email extras frontend gems git init railsapps readme setup testing)
-    @@recipes << %w(email example extras frontend gems git init railsapps readme setup testing)
-    @@recipes << %w(apps4 core email extras frontend gems git init railsapps readme setup testing)
-    @@recipes << %w(apps4 core email extras frontend gems git init railsapps readme setup tests)
-    @@recipes << %w(apps4 core deployment email extras frontend gems git init railsapps readme setup testing)
-    @@recipes << %w(apps4 core deployment email extras frontend gems git init railsapps readme setup tests)
-    @@recipes << %w(apps4 core deployment devise email extras frontend gems git init omniauth pundit railsapps readme setup tests)
+    @@recipes << %w(email extras frontend gems git init railsapps doc readme setup testing)
+    @@recipes << %w(core email extras frontend gems git init railsapps doc readme setup testing)
+    @@recipes << %w(email example extras frontend gems git init railsapps doc readme setup testing)
+    @@recipes << %w(apps4 core email extras frontend gems git init railsapps doc readme setup testing)
+    @@recipes << %w(apps4 core email extras frontend gems git init railsapps doc readme setup tests)
+    @@recipes << %w(apps4 core deployment email extras frontend gems git init railsapps doc readme setup testing)
+    @@recipes << %w(apps4 core deployment email extras frontend gems git init railsapps doc readme setup tests)
+    @@recipes << %w(apps4 core deployment devise email extras frontend gems git init omniauth pundit railsapps doc readme setup tests)
 
     ### collections of preferences that are known to work together
 

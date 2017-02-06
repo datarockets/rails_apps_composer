@@ -54,6 +54,11 @@ License
 TEXT
   end
 
+  if prefer :doc, 'apipie'
+    text = 'For documentation API methods we used apipie gem. More information https://github.com/Apipie/apipie-rails'
+    insert_into_file('README.md', text, after: /Documentation and Support.*\n[-]*\n/)
+  end
+
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: add README files"' if prefer :git, true
 

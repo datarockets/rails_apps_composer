@@ -2,6 +2,7 @@
 prefs[:apps4] = 'rails-datarockets-api'
 # prefs[:github] = true
 prefs[:frontend] = 'none'
+prefs[:frontend] = 'doc'
 prefs[:analytics] = 'none'
 prefs[:email] = 'smtp'
 prefs[:capybara] = false
@@ -109,7 +110,7 @@ description: "rails-datarockets-api starter application"
 author: RailsApps
 
 requires: [git,
-  setup, readme, gems,
+  setup, readme, gems, doc,
   tests,
   email,
   devise, omniauth, roles,
