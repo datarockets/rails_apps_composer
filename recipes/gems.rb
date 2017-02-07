@@ -191,25 +191,7 @@ stage_two do
 FILE
     end
   end
-  ## Foreman Gem
-  if prefer :local_env_file, 'foreman'
-    create_file '.env' do <<-FILE
-# Add account credentials and API keys here.
-# This file should be listed in .gitignore to keep your settings secret!
-# Each entry sets a local environment variable.
-# For example, setting:
-# GMAIL_USERNAME=Your_Gmail_Username
-# makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
 
-FILE
-    end
-    create_file 'Procfile', "web: bundle exec rails server -p $PORT\n" if prefer :prod_webserver, 'thin'
-    create_file 'Procfile', "web: bundle exec unicorn -p $PORT\n" if prefer :prod_webserver, 'unicorn'
-    if (prefs[:dev_webserver] != prefs[:prod_webserver])
-      create_file 'Procfile.dev', "web: bundle exec rails server -p $PORT\n" if prefer :dev_webserver, 'thin'
-      create_file 'Procfile.dev', "web: bundle exec unicorn -p $PORT\n" if prefer :dev_webserver, 'unicorn'
-    end
-  end
   ## Git
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: generators"' if prefer :git, true

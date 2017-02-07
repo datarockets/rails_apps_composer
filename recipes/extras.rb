@@ -17,9 +17,15 @@ prefs[:local_env_file] = config['local_env_file'] unless (config['local_env_file
 if prefer :local_env_file, 'figaro'
   say_wizard "recipe creating application.yml file for environment variables with figaro"
   add_gem 'figaro'
-elsif prefer :local_env_file, 'foreman'
-  say_wizard "recipe creating .env file for development environment variables with foreman"
-  add_gem 'foreman', :group => :development
+elsif prefer :local_env_file, 'dotenv'
+  add_gem 'dotenv-rails'
+  copy_from_file "env_files/env.sample", "env.sample"
+
+  setup_file = URI.parse("#{base_path}/env_files/setup_dotenv.rb")
+  update_file = URI.parse("#{base_path}/env_files/update_dotenv.rb")
+
+  insert_into_file('bin/setup', Net::HTTP.get(setup_file), after: /^ *chdir APP_ROOT do.*\n/, force: false)
+  insert_into_file('bin/update', Net::HTTP.get(update_file), after: /^ *chdir APP_ROOT do.*\n/, force: false)
 end
 
 ## BETTER ERRORS
@@ -150,7 +156,7 @@ config:
   - local_env_file:
       type: multiple_choice
       prompt: Add gem and file for environment variables?
-      choices: [ [None, none], [Add .env with Foreman, foreman]]
+      choices: [ [None, none], [Use figaro gem, figaro], [Use dotenv, dotenv]]
   - better_errors:
       type: boolean
       prompt: Improve error reporting with 'better_errors' during development?

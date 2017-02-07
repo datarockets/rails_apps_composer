@@ -41,7 +41,6 @@ stage_three do
   unless prefer :email, 'none'
     ### 'inject_into_file' doesn't let us inject the same text twice unless we append the extra space, why?
     inject_into_file 'config/secrets.yml', "\n" + secrets_email + " ", :after => "production:"
-    append_file '.env', foreman_email if prefer :local_env_file, 'foreman'
     append_file 'config/application.yml', figaro_email if prefer :local_env_file, 'figaro'
   end
   ## DEVISE
@@ -49,7 +48,6 @@ stage_three do
     inject_into_file 'config/secrets.yml', "\n" + '  domain_name: example.com' + " ", :after => "test:"
     inject_into_file 'config/secrets.yml', "\n" + secrets_d_devise, :after => "development:"
     inject_into_file 'config/secrets.yml', "\n" + secrets_p_devise, :after => "production:"
-    append_file '.env', foreman_devise if prefer :local_env_file, 'foreman'
     append_file 'config/application.yml', figaro_devise if prefer :local_env_file, 'figaro'
     gsub_file 'config/initializers/devise.rb', /'please-change-me-at-config-initializers-devise@example.com'/, "'no-reply@' + Rails.application.secrets.domain_name"
   end
@@ -58,14 +56,11 @@ stage_three do
     inject_into_file 'config/secrets.yml', "\n" + secrets_omniauth, :after => "development:"
     ### 'inject_into_file' doesn't let us inject the same text twice unless we append the extra space, why?
     inject_into_file 'config/secrets.yml', "\n" + secrets_omniauth + " ", :after => "production:"
-    append_file '.env', foreman_omniauth if prefer :local_env_file, 'foreman'
     append_file 'config/application.yml', figaro_omniauth if prefer :local_env_file, 'figaro'
   end
-  ### EXAMPLE FILE FOR FOREMAN AND FIGARO ###
+  ### EXAMPLE FILE FOR FIGARO ###
   if prefer :local_env_file, 'figaro'
     copy_file destination_root + '/config/application.yml', destination_root + '/config/application.example.yml'
-  elsif prefer :local_env_file, 'foreman'
-    copy_file destination_root + '/.env', destination_root + '/.env.example'
   end
   ### DATABASE SEED ###
   if prefer :authentication, 'devise'
@@ -85,11 +80,6 @@ stage_three do
 # See http://railsapps.github.io/rails-environment-variables.html
 FILE
     end
-  elsif prefer :local_env_file, 'foreman'
-    append_file 'db/seeds.rb' do <<-FILE
-# Environment variables (ENV['...']) can be set in the file .env file.
-FILE
-    end
   end
   ## DEVISE-CONFIRMABLE
   if (prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable')
@@ -97,29 +87,17 @@ FILE
   end
   ## DEVISE-INVITABLE
   if prefer :devise_modules, 'invitable'
-    if prefer :local_env_file, 'foreman'
-      run 'foreman run bundle exec rake db:migrate'
-    else
-      run 'bundle exec rake db:migrate'
-    end
+    run 'bundle exec rake db:migrate'
     generate 'devise_invitable user'
   end
   ### APPLY DATABASE SEED ###
   if File.exists?('db/migrate')
     ## ACTIVE_RECORD
     say_wizard "applying migrations and seeding the database"
-    if prefer :local_env_file, 'foreman'
-      run 'foreman run bundle exec rake db:migrate'
-    else
-      run 'bundle exec rake db:migrate'
-    end
+    run 'bundle exec rake db:migrate'
   end
   unless prefs[:skip_seeds]
-    if prefer :local_env_file, 'foreman'
-      run 'foreman run bundle exec rake db:seed'
-    else
-      run 'bundle exec rake db:seed'
-    end
+    run 'bundle exec rake db:seed'
   end
   ### GIT ###
   git :add => '-A' if prefer :git, true
