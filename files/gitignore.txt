@@ -21,4 +21,4 @@
 /db/schema.rb
 
 /config/puma.rb
-/.env
+.env

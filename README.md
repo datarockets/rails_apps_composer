@@ -2,7 +2,7 @@
 
 ## Install
 
-Install specific_install wich hel install forked gems:
+Install specific_install wich help install forked gems:
 ```
 gem install specific_install
 ```
