@@ -1,5 +1,3 @@
-# Application template recipe for the rails_apps_composer. Change the recipe here:
-# https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/extras.rb
 
 ## RVMRC
 if prefs[:rvmrc]
@@ -19,7 +17,7 @@ if prefer :local_env_file, 'figaro'
   add_gem 'figaro'
 elsif prefer :local_env_file, 'dotenv'
   add_gem 'dotenv-rails'
-  copy_from_file "env_files/env.sample", "env.sample"
+  copy_from_file "env_files/.env.sample", ".env.sample"
 
   setup_file = URI.parse("#{base_path}/env_files/setup_dotenv.rb")
   update_file = URI.parse("#{base_path}/env_files/update_dotenv.rb")

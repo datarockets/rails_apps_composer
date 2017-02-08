@@ -13,6 +13,7 @@ prefs[:better_errors] = true
 prefs[:form_builder] = 'simple_form'
 prefs[:git] = true
 prefs[:pry] = true
+prefs[:circle_ci] = true
 prefs[:disable_turbolinks] = true
 prefs[:rubocop] = true
 prefs[:rvmrc] = true

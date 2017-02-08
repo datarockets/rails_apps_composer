@@ -15,6 +15,7 @@ prefs[:authorization] = 'none'
 prefs[:better_errors] = true
 prefs[:form_builder] = 'none'
 prefs[:git] = true
+prefs[:circle_ci] = true
 prefs[:pry] = true
 prefs[:forms] = true
 prefs[:disable_turbolinks] = true
