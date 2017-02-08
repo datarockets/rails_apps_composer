@@ -31,9 +31,6 @@ if Rails.env.development?
 end
 RUBY
     end
-    if prefer(:local_env_file, 'foreman') && File.exists?('Procfile.dev')
-      append_file 'Procfile.dev', "mail: mailcatcher --foreground\n"
-    end
 
     git :add => '-A' if prefer :git, true
     git :commit => '-qm "rails_apps_composer: set up mailcatcher for development"' if prefer :git, true
