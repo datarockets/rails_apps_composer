@@ -22,9 +22,7 @@ prefs[:dev_webserver] = 'puma'
 prefs[:prod_webserver] = 'puma'
 prefs[:database] = 'postgresql'
 
-add_gem "cells"
-add_gem "cells-rails"
-add_gem 'cells-slim'
+add_gem "rails-views"
 
 remove_dir 'app/helpers'
 
