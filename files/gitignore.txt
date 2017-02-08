@@ -5,6 +5,7 @@
 # Ignore bundled gems and bower libs
 /vendor/bundle
 /vendor/assets/components
+/node_modules
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
@@ -20,3 +21,4 @@
 /db/schema.rb
 
 /config/puma.rb
+.env

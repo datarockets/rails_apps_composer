@@ -6,7 +6,11 @@ setup_text = '
     unless File.exist?("config/#{config_file}")
       system "cp config/examples/#{config_file} config/#{config_file}"
     end
-  end'
+  end
+'
+
+insert_into_file("bin/update", " --path vendor/bundle", after: /system!\("bundle install/, force: false)
+insert_into_file("bin/setup", " --path vendor/bundle", after: /system!\("bundle install/, force: false)
 
 prefs[:deployment] = multiple_choice "Prepare for deployment?", [["no", "none"],
     ["Heroku", "heroku"],
@@ -39,18 +43,19 @@ if prefer :deployment, 'capistrano3'
 
     remove_file 'Capfile'
     copy_from_file "capfiles/#{prefs[:prod_webserver]}.txt", 'Capfile'
+    copy_from_file "circle.yml", "circle.yml" if prefer :circle_ci, true
 
     if prefer :prod_webserver, 'puma'
       insert_into_file('bin/setup', setup_text, after: /^ *chdir APP_ROOT do.*\n/, force: false)
       insert_into_file('bin/update', setup_text, after: /^ *chdir APP_ROOT do.*\n/, force: false)
 
-      copy_from_file "examples/puma.txt", 'config/examples/puma.rb'
+      copy_from_file "examples/puma.rb", 'config/examples/puma.rb'
 
       remove_file 'config/deploy/production.rb'
-      copy_from_file "deploy/#{prefs[:prod_webserver]}/production.txt", 'config/deploy/production.rb'
+      copy_from_file "deploy/#{prefs[:prod_webserver]}/production.rb", 'config/deploy/production.rb'
 
       gsub_file 'config/deploy.rb', /[^lock \'[\d, \.]*\'.*\n].*/, ''
-      file_name = URI.parse("#{base_path}/deploy/puma/deploy.txt")
+      file_name = URI.parse("#{base_path}/deploy/puma/deploy.rb")
       inject_into_file 'config/deploy.rb', Net::HTTP.get(file_name), before: /^end/
     end
   end
