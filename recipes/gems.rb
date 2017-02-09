@@ -36,8 +36,7 @@ add_gem 'pg', '~> 0.18' if prefer :database, 'postgresql'
 ## Template Engine
 if prefer :templates, 'slim'
   add_gem 'slim-rails'
-  add_gem 'haml2slim', group: :development
-  add_gem 'html2haml', group: :development
+  add_gem 'html2slim', group: :development
 end
 
 ## Testing Framework
@@ -104,6 +103,7 @@ git :commit => '-qm "rails_apps_composer: Gemfile"' if prefer :git, true
 stage_two do
   say_wizard "recipe stage two"
   say_wizard "configuring database"
+  run "erb2slim 'app/views' -d" if prefer :templates, 'slim'
   unless prefer :database, 'sqlite'
     copy_from_repo 'config/database-postgresql.yml', :prefs => 'postgresql'
     if prefer :database, 'postgresql'

@@ -99,8 +99,7 @@ stage_four do
   }.each { |file| remove_file file }
   # remove temporary Haml gems from Gemfile when Slim is selected
   if prefer :templates, 'slim'
-    gsub_file 'Gemfile', /.*gem 'haml2slim'\n/, "\n"
-    gsub_file 'Gemfile', /.*gem 'html2haml'\n/, "\n"
+    gsub_file 'Gemfile', /.*gem 'html2slim'\n/, "\n"
   end
   # remove gems and files used to assist rails_apps_composer
   gsub_file 'Gemfile', /.*gem 'rails_apps_testing'\n/, ''
