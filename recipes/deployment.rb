@@ -9,8 +9,8 @@ setup_text = '
   end
 '
 
-insert_into_file("bin/update", " --path vendor/bundle", after: /system!\("bundle install/, force: false)
-insert_into_file("bin/setup", " --path vendor/bundle", after: /system!\("bundle install/, force: false)
+insert_into_file("bin/update", " --path vendor/bundle", after: /system!\("bundle install/) if File.exist?("bin/update")
+insert_into_file("bin/setup", " --path vendor/bundle", after: /system!\("bundle install/)
 
 prefs[:deployment] = multiple_choice "Prepare for deployment?", [["no", "none"],
     ["Heroku", "heroku"],
@@ -47,7 +47,7 @@ if prefer :deployment, 'capistrano3'
 
     if prefer :prod_webserver, 'puma'
       insert_into_file('bin/setup', setup_text, after: /^ *chdir APP_ROOT do.*\n/, force: false)
-      insert_into_file('bin/update', setup_text, after: /^ *chdir APP_ROOT do.*\n/, force: false)
+      insert_into_file('bin/update', setup_text, after: /^ *chdir APP_ROOT do.*\n/) if File.exist?("bin/update")
 
       copy_from_file "examples/puma.rb", 'config/examples/puma.rb'
 
