@@ -9,8 +9,8 @@ setup_text = '
   end
 '
 
-insert_into_file("bin/update", " --path vendor/bundle", after: /system!\("bundle install/, force: false)
-insert_into_file("bin/setup", " --path vendor/bundle", after: /system!\("bundle install/, force: false)
+insert_into_file("bin/update", " --path vendor/bundle", after: /system!\([', "]bundle install/, force: false)
+insert_into_file("bin/setup", " --path vendor/bundle", after: /system!\([', "]bundle install/, force: false)
 
 prefs[:deployment] = multiple_choice "Prepare for deployment?", [["no", "none"],
     ["Heroku", "heroku"],

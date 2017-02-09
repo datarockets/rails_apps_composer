@@ -13,9 +13,6 @@ AllCops:
     - "config.ru"
     - "Rakefile"
 
-Lint/EndAlignment:
-  AlignWith: variable
-
 Lint/Eval:
   Enabled: true
   Exclude:
