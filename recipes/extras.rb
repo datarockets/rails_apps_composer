@@ -23,7 +23,7 @@ elsif prefer :local_env_file, 'dotenv'
   update_file = URI.parse("#{base_path}/env_files/update_dotenv.rb")
 
   insert_into_file('bin/setup', Net::HTTP.get(setup_file), after: /^ *chdir APP_ROOT do.*\n/, force: false)
-  insert_into_file('bin/update', Net::HTTP.get(update_file), after: /^ *chdir APP_ROOT do.*\n/, force: false)
+  insert_into_file('bin/update', Net::HTTP.get(update_file), after: /^ *chdir APP_ROOT do.*\n/) if File.exist?("bin/update")
 
   gsub_file '.gitignore', /.*\/config\/database.yml.*\n/, ''
   gsub_file '.gitignore', /.*\/config\/secrets.yml.*\n/, ''
