@@ -12,6 +12,7 @@
 /tmp
 
 # Ignore config files
+.env
 /config/database.yml
 /config/secrets.yml
 
@@ -21,4 +22,3 @@
 /db/schema.rb
 
 /config/puma.rb
-.env
