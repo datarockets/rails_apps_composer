@@ -104,6 +104,12 @@ stage_two do
   say_wizard "recipe stage two"
   say_wizard "configuring database"
   run "erb2slim 'app/views' -d" if prefer :templates, 'slim'
+
+  if prefs[:cors] || yes_wizard?("Use rack-cors?")
+    add_gem 'rack-cors', require: 'rack/cors'
+    copy_from_file 'initializers/cors.rb', 'config/initializers/cors.rb'
+  end
+
   unless prefer :database, 'sqlite'
     copy_from_repo 'config/database-postgresql.yml', :prefs => 'postgresql'
     if prefer :database, 'postgresql'
