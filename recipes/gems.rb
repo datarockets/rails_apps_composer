@@ -18,11 +18,11 @@ if (prefs[:dev_webserver] == prefs[:prod_webserver])
   add_gem 'unicorn' if prefer :dev_webserver, 'unicorn'
   add_gem 'unicorn-rails' if prefer :dev_webserver, 'unicorn'
 else
-  add_gem 'thin', :group => [:development, :test] if prefer :dev_webserver, 'thin'
-  add_gem 'unicorn', :group => [:development, :test] if prefer :dev_webserver, 'unicorn'
-  add_gem 'unicorn-rails', :group => [:development, :test] if prefer :dev_webserver, 'unicorn'
-  add_gem 'thin', :group => :production if prefer :prod_webserver, 'thin'
-  add_gem 'unicorn', :group => :production if prefer :prod_webserver, 'unicorn'
+  add_gem 'thin', group: [:development, :test] if prefer :dev_webserver, 'thin'
+  add_gem 'unicorn', group: [:development, :test] if prefer :dev_webserver, 'unicorn'
+  add_gem 'unicorn-rails', group: [:development, :test] if prefer :dev_webserver, 'unicorn'
+  add_gem 'thin', group: :production if prefer :prod_webserver, 'thin'
+  add_gem 'unicorn', group: :production if prefer :prod_webserver, 'unicorn'
 end
 
 ## Database Adapter
