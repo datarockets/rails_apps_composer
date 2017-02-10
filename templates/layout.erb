@@ -20,7 +20,7 @@ module Gemfile
       args = ["'#{@name}'"]
       args << "'#{@version}'" if @version
       @opts.each do |name,value|
-        args << ":#{name}=>#{value.inspect}"
+        args << "#{name}: #{value.inspect}"
       end
       args.join(', ')
     end

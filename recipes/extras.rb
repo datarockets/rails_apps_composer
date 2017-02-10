@@ -37,11 +37,11 @@ if prefs[:better_errors]
   if RUBY_ENGINE == 'ruby'
     case RUBY_VERSION.split('.')[0] + "." + RUBY_VERSION.split('.')[1]
       when '2.1'
-        add_gem 'binding_of_caller', :group => :development, :platforms => [:mri_21]
+        add_gem 'binding_of_caller', group: :development, platforms: [:mri_21]
       when '2.0'
-        add_gem 'binding_of_caller', :group => :development, :platforms => [:mri_20]
+        add_gem 'binding_of_caller', group: :development, platforms: [:mri_20]
       when '1.9'
-        add_gem 'binding_of_caller', :group => :development, :platforms => [:mri_19]
+        add_gem 'binding_of_caller', group: :development, platforms: [:mri_19]
     end
   end
 end
@@ -50,14 +50,14 @@ end
 if config['pry'] || prefs[:pry]
   say_wizard "recipe adding pry-rails gem"
   gsub_file 'Gemfile', /.*gem 'byebug'.*\n/, ''
-  add_gem 'pry-byebug', :group => [:development, :test]
-  add_gem 'pry-rails', :group => [:development, :test]
+  add_gem 'pry-byebug', group: [:development, :test]
+  add_gem 'pry-rails', group: [:development, :test]
 end
 
 ## Rubocop
 if config['rubocop'] || prefs[:rubocop]
   say_wizard "recipe adding rubocop gem and basic .rubocop.yml"
-  add_gem 'rubocop', require: false, :group => [:development, :test]
+  add_gem 'rubocop', require: false, group: [:development, :test]
   add_gem 'rubocop-rspec'
   copy_from_file 'rubocop.txt', '.rubocop.yml'
 end
@@ -86,7 +86,7 @@ case RbConfig::CONFIG['host_os']
     prefs[:jsruntime] = yes_wizard? "Add 'therubyracer' JavaScript runtime (for Linux users without node.js)?" unless prefs.has_key? :jsruntime
     if prefs[:jsruntime]
       say_wizard "recipe adding 'therubyracer' JavaScript runtime gem"
-      add_gem 'therubyracer', :platform => :ruby
+      add_gem 'therubyracer', platform: :ruby
     end
 end
 
