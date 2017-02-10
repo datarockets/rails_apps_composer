@@ -1,6 +1,6 @@
 
 prefs[:apps4] = 'rails-datarockets-api'
-# prefs[:github] = true
+prefs[:cors] = true
 prefs[:frontend] = 'none'
 prefs[:doc] = 'apipie'
 prefs[:analytics] = 'none'
