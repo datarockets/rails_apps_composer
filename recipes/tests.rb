@@ -1,3 +1,19 @@
+matcher_config = '
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    # Choose a test framework:
+    with.test_framework :rspec
+
+    # Choose one or more libraries:
+    # with.library :active_record
+    # with.library :active_model
+    # with.library :action_controller
+    # Or, choose the following (which implies all of the above):
+    with.library :rails
+  end
+end
+'
+
 stage_two do
   say_wizard "recipe stage two"
   if prefer :tests, 'rspec'
@@ -30,13 +46,16 @@ stage_three do
     end
     if (prefer :authorization, 'roles') || (prefer :authorization, 'pundit')
       generate 'testing:configure pundit -f'
-      remove_file 'spec/policies/user_policy_spec.rb' 
+      remove_file 'spec/policies/user_policy_spec.rb'
       remove_file 'spec/support/pundit.rb' if prefer :authorization, 'roles'
       if (prefer :authentication, 'devise') &&\
         ((prefer :devise_modules, 'confirmable') || (prefer :devise_modules, 'invitable'))
         inject_into_file 'spec/factories/users.rb', "    confirmed_at Time.now\n", :after => "factory :user do\n"
       end
     end
+
+    inject_into_file 'spec/rails_helper.rb', matcher_config, :after => "require 'rspec/rails'\n"
+
     remove_file 'spec/features/users/user_index_spec.rb'
     remove_file 'spec/features/users/user_show_spec.rb'
   end
