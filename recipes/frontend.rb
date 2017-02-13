@@ -1,22 +1,29 @@
 # Application template recipe for the rails_apps_composer. Change the recipe here:
 # https://github.com/RailsApps/rails_apps_composer/blob/master/recipes/frontend.rb
 
-stage_two do
-  say_wizard "recipe stage two"
-  # set up a front-end framework using the rails_layout gem
-  case prefs[:frontend]
-    when 'simple'
-      generate 'layout:install simple -f'
-    when 'bootstrap4'
-      generate 'layout:install bootstrap4 -f'
-    when 'foundation5'
-      generate 'layout:install foundation5 -f'
+if prefer :npm, 'npm'
+  run 'npm init'
+  insert_code = "config.assets.paths << Rails.root.join('node_modules')"
+  inject_into_file 'config/application.rb', insert_code, after: /class Application < Rails::Application\n/
+  run 'npm install'
+  run 'npm install jquery'
+  run 'npm install jquery_ujs'
+  if prefs[:frontend] == 'bootstrap4'
+    run 'npm install bootstrap@4.0.0-alpha.6'
+  elsif prefs[:frontend] == 'foundation6'
+    run 'npm install foundation-sites@6.3.0'
   end
-
-  ### GIT ###
-  git :add => '-A' if prefer :git, true
-  git :commit => '-qm "rails_apps_composer: front-end framework"' if prefer :git, true
+else
+  if prefs[:frontend] == 'bootstrap4'
+    add_gem 'bootstrap', '~> 4.0.0.alpha3.1'
+  elsif prefs[:frontend] == 'foundation6'
+    add_gem 'foundation-rails', '~> 6.3'
+  end
 end
+
+### GIT ###
+git :add => '-A' if prefer :git, true
+git :commit => '-qm "rails_apps_composer: front-end framework"' if prefer :git, true
 
 __END__
 

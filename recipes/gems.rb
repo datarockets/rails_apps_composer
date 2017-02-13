@@ -61,15 +61,6 @@ if prefer :tests, 'rspec'
   end
 end
 
-## Front-end Framework
-add_gem 'rails_layout', group: :development unless prefer :apps4, 'rails-datarockets-api'
-case prefs[:frontend]
-  when 'bootstrap4'
-    add_gem 'bootstrap', '~> 4.0.0.alpha3.1'
-  when 'foundation5'
-    add_gem 'foundation-rails', '~> 5.5'
-end
-
 ## Authentication (Devise)
 if prefer :authentication, 'devise'
     add_gem 'devise'
