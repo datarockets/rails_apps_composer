@@ -3,6 +3,16 @@
 
 stage_three do
   say_wizard "recipe stage three"
+
+  file = File.read("config/secrets.yml")
+  dev_key = file.match(/(?<=development:\n).*/).to_s.strip
+  test_key = file.match(/(?<=test:\n).*/).to_s.strip
+
+  copy_from_file "secrets.yml", 'config/secrets.yml'
+
+  gsub_file 'config/secrets.yml', /secret_key_base: development_secret_key/, dev_key
+  gsub_file 'config/secrets.yml', /secret_key_base: test_secret_key/, test_key
+
   if (!prefs[:secrets].nil?)
     prefs[:secrets].each do |secret|
       env_var = "  #{secret}: <%= ENV[\"#{secret.upcase}\"] %>"
