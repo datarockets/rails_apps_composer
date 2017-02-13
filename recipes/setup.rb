@@ -1,3 +1,10 @@
+## Application configs
+insert_code = '
+      g.stylesheets = false
+      g.javascripts = false
+      g.helper = false
+'
+inject_into_file 'config/application.rb', insert_code, after: "config.generators do |g|\n"
 
 ## Ruby on Rails
 HOST_OS = RbConfig::CONFIG['host_os']
