@@ -163,7 +163,7 @@ stage_two do
     case prefs[:frontend]
       when 'bootstrap4'
         say_wizard "simple_form not yet available for use with Bootstrap 4"
-      when 'foundation5'
+      when 'foundation6'
         say_wizard "recipe installing simple_form for use with Zurb Foundation"
         generate 'simple_form:install --foundation'
       else
