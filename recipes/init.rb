@@ -5,8 +5,8 @@ stage_three do
   say_wizard "recipe stage three"
 
   file = File.read("config/secrets.yml")
-  dev_key = f.match(/(?<=development:\n).*/).to_s.strip
-  test_key = f.match(/(?<=test:\n).*/).to_s.strip
+  dev_key = file.match(/(?<=development:\n).*/).to_s.strip
+  test_key = file.match(/(?<=test:\n).*/).to_s.strip
 
   copy_from_file "secrets.yml", 'config/secrets.yml'
 
