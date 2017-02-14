@@ -48,6 +48,13 @@ if recipes.include? 'frontend'
     ["Simple CSS", "simple"]] unless prefs.has_key? :frontend
 end
 
+## Add yrn
+prefs[:yarn] = yes_wizard?("Use yarn?") if prefs[:yarn].nil?
+if prefs[:yarn]
+  run 'brew install yarn'
+  run 'yarn init'
+end
+
 ## Email
 if recipes.include? 'email'
   unless prefs.has_key? :email
