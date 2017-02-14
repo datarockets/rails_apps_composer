@@ -59,6 +59,14 @@ else
   prefs[:email] = 'none'
 end
 
+## Rollbar
+prefs[:rollbar] = yes_wizard?("Use rollbar?") if prefs[:rollbar].nil?
+if prefs[:rollbar]
+  add_gem 'rollbar'
+  rollbar_token = ask_wizard("Rollbar token:")
+  run "rails generate rollbar #{rollbar_token}"
+end
+
 ## Authentication and Authorization
 if (recipes.include? 'devise') || (recipes.include? 'omniauth')
   prefs[:authentication] = multiple_choice "Authentication?", [["None", "none"], ["Devise", "devise"], ["OmniAuth", "omniauth"]] unless prefs.has_key? :authentication
