@@ -46,7 +46,7 @@ if recipes.include? 'frontend'
   prefs[:frontend] = multiple_choice "Front-end framework?", [["None", "none"],
     ["Bootstrap 4.0", "bootstrap4"],
     ["Zurb Foundation 6", "foundation6"],
-    ["Simple CSS", "simple"]] unless prefs[:npm] != 'none' && !prefs.has_key? :frontend
+    ["Simple CSS", "simple"]] if (prefs[:npm] == 'none' && prefs.has_key?(:frontend))
 end
 
 ## Add yrn
