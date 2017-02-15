@@ -1,4 +1,5 @@
 prefs[:npm] = 'none'
+prefs[:yarn] = true
 prefs[:apps4] = 'rails-datarockets-api'
 prefs[:cors] = true
 prefs[:frontend] = 'none'
