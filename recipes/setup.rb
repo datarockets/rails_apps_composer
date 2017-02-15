@@ -48,6 +48,13 @@ if recipes.include? 'frontend'
     ["Simple CSS", "simple"]] unless prefs.has_key? :frontend
 end
 
+## Add yrn
+prefs[:yarn] = yes_wizard?("Use yarn?") if prefs[:yarn].nil?
+if prefs[:yarn]
+  run 'brew install yarn'
+  run 'yarn init'
+end
+
 ## Email
 if recipes.include? 'email'
   unless prefs.has_key? :email
@@ -57,6 +64,14 @@ if recipes.include? 'email'
   end
 else
   prefs[:email] = 'none'
+end
+
+## Rollbar
+prefs[:rollbar] = yes_wizard?("Use rollbar?") if prefs[:rollbar].nil?
+if prefs[:rollbar]
+  add_gem 'rollbar'
+  rollbar_token = ask_wizard("Rollbar token:")
+  run "rails generate rollbar #{rollbar_token}"
 end
 
 ## Authentication and Authorization
