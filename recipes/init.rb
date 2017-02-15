@@ -112,25 +112,6 @@ FILE
   ### GIT ###
   git :add => '-A' if prefer :git, true
   git :commit => '-qm "rails_apps_composer: set up database"' if prefer :git, true
-  ### FRONTEND (must run after database migrations) ###
-  # generate Devise views with appropriate styling
-  if prefer :authentication, 'devise'
-    case prefs[:frontend]
-      when 'bootstrap4'
-        generate 'layout:devise bootstrap3 -f'
-      when 'foundation5'
-        generate 'layout:devise foundation5 -f'
-    end
-  end
-  # create navigation links using the rails_layout gem
-  if prefs[:frontend] == 'bootstrap4'
-    generate 'layout:navigation bootstrap4 -f'
-  else
-    generate 'layout:navigation -f'
-  end
-  ### GIT ###
-  git :add => '-A' if prefer :git, true
-  git :commit => '-qm "rails_apps_composer: navigation links"' if prefer :git, true
 end
 
 __END__

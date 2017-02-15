@@ -42,10 +42,11 @@ end
 
 ## Front-end Framework
 if recipes.include? 'frontend'
+  prefs[:npm] = multiple_choice "Packege manager for install frontend path", [["Default", "none"], ["NPM", "npm"]] unless prefs.has_key? :npm
   prefs[:frontend] = multiple_choice "Front-end framework?", [["None", "none"],
     ["Bootstrap 4.0", "bootstrap4"],
-    ["Zurb Foundation 5.5", "foundation5"],
-    ["Simple CSS", "simple"]] unless prefs.has_key? :frontend
+    ["Zurb Foundation 6", "foundation6"],
+    ["Simple CSS", "simple"]] unless prefs[:npm] != 'none' && !prefs.has_key? :frontend
 end
 
 ## Add yrn
