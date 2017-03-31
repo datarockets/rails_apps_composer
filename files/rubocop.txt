@@ -13,6 +13,10 @@ AllCops:
     - "config.ru"
     - "Rakefile"
 
+Style/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+  EnforcedStyleForEmptyBraces: no_space
+
 Lint/EndAlignment:
   AlignWith: variable
 
