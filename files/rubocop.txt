@@ -18,7 +18,7 @@ Style/SpaceInsideHashLiteralBraces:
   EnforcedStyleForEmptyBraces: no_space
 
 Lint/EndAlignment:
-  AlignWith: variable
+  EnforcedStyleAlignWith: variable
 
 Lint/Eval:
   Enabled: true
