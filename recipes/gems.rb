@@ -87,6 +87,11 @@ gems.each do |g|
   add_gem(*g)
 end
 
+add_gem 'seedbank'
+create_file 'db/seeds/development/.keep', ''
+create_file 'db/seeds/production/.keep', ''
+create_file 'db/seeds/staging/.keep', ''
+
 git :add => '-A' if prefer :git, true
 git :commit => '-qm "rails_apps_composer: Gemfile"' if prefer :git, true
 
@@ -116,7 +121,7 @@ stage_two do
         else
           gsub_file "config/database.yml", /username: .*/, "username: #{pg_username}"
           pg_password = prefs[:pg_password] || ask_wizard("Password for PostgreSQL user #{pg_username}?")
-          gsub_file "config/database.yml", /password: .*\n/, "password: #{pg_password}"
+          gsub_file "config/database.yml", /password: .*\n/, "password: #{pg_password}\n"
           say_wizard "set config/database.yml for username/password #{pg_username}/#{pg_password}"
         end
         if pg_host.present?
